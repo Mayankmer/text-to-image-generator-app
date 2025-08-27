@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AppContextProvider from './store/AppContext.jsx'
 import Home from './pages/Home.jsx'
 import Result from './pages/Result.jsx'
 import BuyCredi from './pages/BuyCredit.jsx'
@@ -29,6 +30,9 @@ const router = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <AppContextProvider>
+      <RouterProvider router={router}/>
+    </AppContextProvider>
+    
   </StrictMode>,
 )
