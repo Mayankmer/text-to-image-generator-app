@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
-
+import {motion} from 'motion/react'
 
 function Result() {
 
@@ -10,10 +10,10 @@ function Result() {
   const [input, setInput] = useState("")
 
   const onSubmitHandler = async(e)=>{
-
+    
   }
   return (
-    <form onSubmit={onSubmitHandler} action="" className='flex flex-col min-h-[90vh] justify-center
+    <motion.form onSubmit={onSubmitHandler} action="" className='flex flex-col min-h-[90vh] justify-center
     items-center'>
     <div>
       <div className='relative'>
@@ -47,7 +47,7 @@ function Result() {
       cursor-pointer'>Download</a>
     </div>
   }
-    </form>
+    </motion.form>
   )
 }
 
