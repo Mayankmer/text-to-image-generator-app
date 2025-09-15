@@ -8,7 +8,7 @@ const userAuth = async (req,res,next)=>{
             success: false,
             message: 'Invalid user'
         })
-    }
+    }   
 
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET)

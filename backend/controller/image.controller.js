@@ -1,10 +1,11 @@
-import userModel from "../models/user.model"
+import userModel from "../models/user.model.js"
 import FormData from 'form-data'
 import axios from 'axios'
 
 export const generateImage = async(req, res) =>{
     try{
-        const {userId, prompt} = req.body
+        const userId = req.userId  
+        const { prompt } = req.body 
 
         const user = await userModel.findById(userId)
         if(!user || !prompt){
@@ -22,7 +23,7 @@ export const generateImage = async(req, res) =>{
         const formData = new FormData()
         formData.append('prompt', prompt)
 
-        const data = await axios.post('https://clipdrop-api.co/text-to-image/v1',formData,
+        const response = await axios.post('https://clipdrop-api.co/text-to-image/v1',formData,
             {
                 headers:{
                     'x-api-key': process.env.CLIPDROP_KEY
@@ -31,7 +32,7 @@ export const generateImage = async(req, res) =>{
             }
         )
 
-        const base64Image = Buffer.from(data, 'binary').toString('base64')
+        const base64Image = Buffer.from(response.data, 'binary').toString('base64')
 
         const resultImage = `data:image/png;base64,${base64Image}`
 
