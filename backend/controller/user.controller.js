@@ -7,7 +7,7 @@ const registerUser = async(req, res)=>{
         const {name, email, password} = req.body;
         if(!name || !email || !password){
             return res.json({
-                sucess: false, message: "missing details"
+                success: false, message: "missing details"
             })
         }
 
@@ -26,7 +26,7 @@ const registerUser = async(req, res)=>{
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
 
-        res.json({sucess: true, token, user:{
+        res.json({success: true, token, user:{
             name: user.name
         }})
     } catch (error) {
@@ -41,7 +41,7 @@ const loginUser = async (req, res)=>{
         const user = await userModel.findOne({email})
 
         if(!user){
-            return res.json({sucess:false, message:
+            return res.json({success:false, message:
                 'user does not exist'
             })
         }
@@ -51,11 +51,11 @@ const loginUser = async (req, res)=>{
             //generate token
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
 
-            res.json({sucess: true, token, user:{
+            res.json({success: true, token, user:{
                 name: user.name
             }})
         }else{
-            return res.json({sucess: false, 
+            return res.json({success: false, 
                 message:'Invalid credentials'
             })
         }
