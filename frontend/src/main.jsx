@@ -11,25 +11,20 @@ import App from './App.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
-    children:[
-      {
-        path: '/',
-        element: <Home/>
-      },
-      {
-        path: '/result',
-        element: <Result/>
-      },
-      {
-        path: '/buyCredit',
-        element: <BuyCredi/>
-      }
-    ]
-  }
-])
+    element: (
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    ),
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/result', element: <Result /> },
+      { path: '/buyCredit', element: <BuyCredi /> },
+    ],
+  },
+]);
+
 createRoot(document.getElementById('root')).render(
-    <AppContextProvider>
-      <RouterProvider router={router}/>
-    </AppContextProvider>
-)
+  <RouterProvider router={router} />
+);
+

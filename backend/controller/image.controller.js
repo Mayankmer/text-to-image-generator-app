@@ -42,7 +42,7 @@ export const generateImage = async(req, res) =>{
 
         res.status(200)
         .json({
-            sucess: true, message:'Image generated',
+            success: true, message:'Image generated',
             creditBalance: user.creditBalance-1, resultImage
         })
     }catch (error){
